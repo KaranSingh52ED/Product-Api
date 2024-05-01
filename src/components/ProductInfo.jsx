@@ -28,7 +28,7 @@ const ProductInfo = () => {
         <div className='flex flex-col  font-serif justify-between p-5 bg-green-50 ring-1 ring-blue-500 m-5 shadow-inner shadow-black rounded-3xl lg:flex-row gap-16 lg:items-center'>
 
             <div className='flex flex-col gap-6 lg:w-2/5'>
-                <img src={activeImg} alt={product.title} className='w-full h-full aspect-square object-cover rounded-xl' />
+                <img src={activeImg} alt={product.title} className='w-full h-full  object-cover rounded-xl' />
                 <div className='flex flex-row justify-between overflow-x-auto overflow-y-hidden mb-5 min-36'>
                     {product.images.map((image, index) => (
                         <img key={index} src={image} alt={`Product ${index + 1}`} className='w-24 h-24 rounded-md  ring-1 ring-slate-700 hover:shadow-md m-4 transform transition-shadow  hover:shadow-black duration-500 ease-in-out shadow-xl  cursor-pointer ' onClick={() => setActiveImage(image)} />
