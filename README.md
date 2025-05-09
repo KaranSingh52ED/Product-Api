@@ -1,20 +1,39 @@
-Navigate to Your Project Directory
+🚀 Getting Started
 
-Install Dependencies-->
+1. Navigate to Your Project Directory
+
+```bash
+cd Product-Api
+```
+
+2. Install Dependencies
+
+```bash
 npm install
+```
 
-Start the Development Server-->
+3. Start the Development Server
+
+```bash
 npm run dev
+```
 
-Build for Production-->
+4. Build for Production
+
+```bash
 npm run build
+```
 
-functionality
+🔧 Features & Functionality
 
-1. Product Page functionality
-2. Product Page functionality
-3. Route for ProductList --> "/"
-4. Route for ProductInfo --> "/product/:id"
-5. Route for Home --> "/"
-6. stylish ProductList and ProductInfo Pages
-7. Great User Interface using animation , hover,transition and other effects
+1. Product Listing Page – Displays a list of products with images, prices, stock info, and more.
+2. Product Detail Page – View detailed information about a selected product.
+3. Routing:
+   - `/` → Product List Page
+   - `/product/:id` → Individual Product Info Page
+4. Modern UI/UX – Built with Tailwind CSS and enhanced with:
+   - Hover effects
+   - Smooth transitions
+   - Responsive layouts
+   - Animations for engaging interactions
+5. Clean and Stylish Design – Visually appealing components that are both functional and aesthetic.
