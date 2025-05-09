@@ -1,51 +1,83 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import "./../App.css";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const ProductList = () => {
-    const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch('https://dummyjson.com/products');
-                const data = await response.json();
-                setProducts(data.products);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://dummyjson.com/products");
+        const data = await response.json();
+        setProducts(data.products);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
-        fetchData();
-    }, []);
+    fetchData();
+  }, []);
 
-    return (
-        <div className="flex flex-col bg-emerald-50 items-center font-serif  ring-1 ring-violet-500 m-5 shadow-inner hover:text-green-600 shadow-black rounded-2xl p-2 justify-center">
-            <h1 className="text-4xl m-5 p-2 font-bold border-2 rounded-lg shadow-lg shadow-black hover:translate-x-2 hover:rotate-3 hover:shadow-blue-500 text-center mb-10"> Latest Products</h1>
-            <ul className="flex flex-wrap justify-center">
-                {products.map((product) => (
-                    <li key={product.id} className=" max-w-sm mx-4 mb-8 overflow-hidden  shadow-lg bg-fuchsia-100 rounded-lg hover:shadow-xl transform transition-shadow  hover:shadow-black duration-500 ease-in-out">
-                        <Link to={{ pathname: `/product/${product.id}`, state: { product } }}>
-                            <img src={product.thumbnail} alt={product.title} className="w-full h-64 min-w-96   object-cover object-center border-x-emerald-200 p-1 rounded-none   shadow-black shadow   " />
-                        </Link>
-                        <div className="px-6 flex flex-row  py-4">
-                            <div className='mx-4'>
-                                <h3 className="text-xl font-semibold mb-2">{product.title}</h3>
-                                <p className="text-gray-700 text-base mb-2">Stock: {product.stock}</p>
-                                <p className="text-gray-700 text-base mb-4">Price: <b className='text-red-500'> ${product.price}</b></p>
-                            </div>
-
-                            <div className='mx-4'>
-                                <p className="text-gray-700 text-base mb-4">Brand:<b> {product.brand}</b></p>
-                                <p className="text-gray-700 text-base mb-4">Stock: {product.stock}</p>
-                                <p className="text-gray-700 text-base mb-4">Discount: <span className='text-green-600 font-bold'>{product.discountPercentage}%</span></p>
-                            </div>
-                        </div>
-                    </li>
-                ))}
-            </ul>
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-violet-100 py-10 px-4">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-4xl md:text-5xl font-extrabold text-center text-violet-800 mb-12 tracking-tight drop-shadow-lg">
+          Latest Products
+        </h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {products.map((product) => (
+            <div
+              key={product.id}
+              className="bg-white rounded-2xl shadow-md hover:shadow-2xl transition-shadow duration-300 border border-violet-200 flex flex-col"
+            >
+              <Link
+                to={`/product/${product.id}`}
+                className="focus:outline-none focus:ring-4 focus:ring-violet-300 rounded-t-2xl"
+              >
+                <img
+                  src={product.thumbnail}
+                  alt={product.title}
+                  className="w-full h-60 object-cover rounded-t-2xl"
+                />
+              </Link>
+              <div className="flex-1 flex flex-col justify-between p-6">
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-800 mb-2 truncate">
+                    {product.title}
+                  </h2>
+                  <p className="text-gray-500 text-sm mb-1">
+                    Brand: <span className="font-medium">{product.brand}</span>
+                  </p>
+                  <p className="text-gray-500 text-sm mb-1">
+                    Stock: <span className="font-medium">{product.stock}</span>
+                  </p>
+                </div>
+                <div className="flex items-center justify-between mt-4">
+                  <span className="text-2xl font-bold text-emerald-600">
+                    ${product.price}
+                  </span>
+                  <span className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-semibold">
+                    -{product.discountPercentage}% OFF
+                  </span>
+                </div>
+                <Link
+                  to={`/product/${product.id}`}
+                  className="mt-6 inline-block text-center bg-violet-600 hover:bg-violet-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-4 focus:ring-violet-300"
+                >
+                  View Details
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
-    );
+        {products.length === 0 && (
+          <div className="text-center text-gray-400 mt-20 text-lg animate-pulse">
+            Loading products...
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default ProductList;

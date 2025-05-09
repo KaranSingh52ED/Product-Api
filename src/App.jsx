@@ -1,7 +1,7 @@
-import React from 'react'
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
-import ProductList from './components/ProductList'
-import ProductInfo from './components/ProductInfo'
+import React from "react";
+import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import ProductList from "./components/ProductList";
+import ProductInfo from "./components/ProductInfo";
 
 const App = () => {
   return (
@@ -9,10 +9,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<ProductList />} />
         <Route path="/product/:id" element={<ProductInfo />} />
-
       </Routes>
     </Router>
-  )
-}
+  );
+};
 
-export default App
+export default App;
